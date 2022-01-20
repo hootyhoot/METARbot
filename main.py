@@ -35,7 +35,7 @@ async def on_message(message):
     else:
       await channel.send(f"I'm sorry but '{airport.upper()}' is not a valid airfield. Please try again in this format '*metar (4 digit ICAO code)'")
 
-keep_alive()
+keep_alive()#runs keep_alive.py
 
 client.run(os.getenv("TOKEN"))
 my_secret = os.environ['TOKEN']
