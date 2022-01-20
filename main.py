@@ -18,7 +18,7 @@ async def on_message(message):
   channel = message.channel
   if message.content.startswith("*metar"):
     airport = message.content[7:11]
-    hdr = {"X-API-Key": "f7c84f572f9346d88d49413278"}
+    hdr = {"X-API-Key": "enter checkwx api key here"}
     req = requests.get(f"https://api.checkwx.com/metar/{airport}", headers=hdr)
 
     try:
