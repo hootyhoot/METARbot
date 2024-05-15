@@ -3,7 +3,7 @@ from threading import Thread
 
 app = Flask('')
 
-@app.route('/api/main.py')
+@app.route('/main.py')
 def home():
     return "running"
 
