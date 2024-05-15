@@ -3,7 +3,7 @@ import json
 import discord
 import os
 import discord.ext
-from keep_alive import keep_alive
+from index import keep_alive
 from discord.ext import commands
 
 client = discord.Client(
