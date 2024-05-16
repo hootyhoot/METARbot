@@ -4,6 +4,13 @@
 
 This bot is hosted on a VPS inside a Docker container. The Dockerfile and requirements file are all included if you want to host your own version or run locally.
 
+**Requirements:**
+<ul>
+  <li>Docker</li>
+  <li>Discord API key - under environment variable 'TOKEN'</li>
+  <li>checkWX API key - under environment variable 'checkWXkey'</li>
+</ul>
+
 Clone this repo then outside the directory created, build the image using: 
 ```bash
 docker build METARbot/ --tag metarbot
