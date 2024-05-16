@@ -11,6 +11,6 @@ docker build METARbot/ --tag metarbot
 
 Then:
 ```bash
-docker run -d metarbot
+docker run -d --restart unless-stopped metarbot
 ```
 This should run the docker image in a detached state and in the background
