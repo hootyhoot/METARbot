@@ -1,5 +1,8 @@
 # Terms of Service
 
+## Contacts:
+**discord** : mcboongus
+
 ## 1. Introduction
 This is METARbot (hereinafter referred to as "The Bot"). By using the Bot, you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Bot.
 
