@@ -2,44 +2,56 @@ import requests
 import json
 import discord
 import os
-import discord.ext
 from index import keep_alive
-from discord.ext import commands
+from discord import app_commands
 
-client = discord.Client(
-    intents=discord.Intents(messages=True, message_content=True))
-
-
-async def on_ready():
-    print("bot online")  #will print bot online when booted up
+# Create client with minimal intents (no privileged intents needed)
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
+tree = app_commands.CommandTree(client)
 
 
 @client.event
-async def on_message(message):
-    ##next change for nearest airport if airfield is valid but no available METAR
-    channel = message.channel
-    if message.content.startswith("*metar"):
-        airport = message.content[7:11]
-        hdr = {"X-API-Key": os.environ['checkWXkey']}
-        req = requests.get(f"https://api.checkwx.com/metar/{airport}",
-                           headers=hdr)
+async def on_ready():
+    print("bot online")
+    # Sync slash commands with Discord
+    await tree.sync()
+    print("slash commands synced")
 
-        try:
-            req.raise_for_status()
-            resp = json.loads(req.text)
-            output = json.dumps(resp, indent=1)
 
-        except requests.exceptions.HTTPError as e:
-            print(e)
+@tree.command(name="metar", description="Get METAR data for an airport")
+@app_commands.describe(icao="4-letter ICAO airport code (e.g., KJFK)")
+async def metar(interaction: discord.Interaction, icao: str):
+    # Defer the response since API call might take a moment
+    await interaction.response.defer()
 
-        cleanedOutput = output[31:-6]
-        if len(cleanedOutput) > 0:
-            await channel.send(
-                f"Here's the METAR for {airport.upper()}: \n{cleanedOutput}")
-        else:
-            await channel.send(
-                f"I'm sorry but '{airport.upper()}' is not a valid airfield. Please try again in this format '*metar (4 digit ICAO code)'"
-            )
+    # Validate ICAO code length
+    airport = icao.strip()[:4]
+
+    hdr = {"X-API-Key": os.environ['checkWXkey']}
+    req = requests.get(f"https://api.checkwx.com/metar/{airport}",
+                       headers=hdr)
+
+    try:
+        req.raise_for_status()
+        resp = json.loads(req.text)
+        output = json.dumps(resp, indent=1)
+
+    except requests.exceptions.HTTPError as e:
+        print(e)
+        await interaction.followup.send(
+            f"Error retrieving METAR data for '{airport.upper()}'. Please try again later."
+        )
+        return
+
+    cleanedOutput = output[31:-6]
+    if len(cleanedOutput) > 0:
+        await interaction.followup.send(
+            f"Here's the METAR for {airport.upper()}: \n{cleanedOutput}")
+    else:
+        await interaction.followup.send(
+            f"I'm sorry but '{airport.upper()}' is not a valid airfield. Please provide a valid 4-letter ICAO code."
+        )
 
 
 keep_alive()
