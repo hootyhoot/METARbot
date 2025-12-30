@@ -28,7 +28,7 @@ The Bot aims to provide accurate and timely METAR reports; however, service inte
 To the fullest extent permitted by applicable law, the Bot and its creators shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from:
 - Your use or inability to use the Bot.
 - Any unauthorized access to or use of our servers and/or any personal information stored therein.
-- Any bugs, viruses, trojan horses, or similar issues that may be transmitted to or through the Bot.
+- Any bugs, or similar issues that may be transmitted to or through the Bot.
 
 ## 8. Modifications to the Terms
 We reserve the right to modify these Terms at any time. Changes and clarifications will take effect immediately upon their posting. Your continued use of the Bot following the posting of any changes constitutes acceptance of those changes.
@@ -37,7 +37,7 @@ We reserve the right to modify these Terms at any time. Changes and clarificatio
 We reserve the right to terminate your access to the Bot without notice and for any reason, including, but not limited to, a breach of these Terms.
 
 ## 10. Contact Information
-If you have any questions about these Terms, please contact us at [your contact information].
+If you have any questions about these Terms, please contact us at [mail@mikhail.codes].
 
 ---
 
